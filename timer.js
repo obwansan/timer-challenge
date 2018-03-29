@@ -3,6 +3,10 @@
 * The button that starts a timer stays in place.
 *
 * Populate a counter with the number of clicks on the button in the 3 seconds.
+*
+* If clicked let the user know they have won.
+*
+* If not clicked, throw a console.log error
 * */
 
 var createBtn = document.querySelector('#createBtn');
@@ -27,8 +31,15 @@ createBtn.addEventListener('click', function() {
         setTimeout(function() {
             newBtnContainer.innerHTML = '';
 
-            // display number of button clicks in the 3 seconds
-            clicks.innerHTML = '<p>Button clicks in 3 seconds: ' + counter + '</p>';
+            // if not clicked, throw a console.log error
+            if (counter == 0) {
+                throw 'You didn\'t click the button!';
+            } else if (counter == 3) {
+                clicks.innerHTML = '<p>You\'ve won!</p>';
+            } else {
+                // display number of button clicks in the 3 seconds
+                clicks.innerHTML = '<p>Button clicks in 3 seconds: ' + counter + '</p>';
+            }
         }, 3000);
 
     }, 3000);
